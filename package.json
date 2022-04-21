@@ -7,6 +7,14 @@
   "repository": "https://github.com/Sup3r-Us3r/express-internationalization",
   "author": "Mayderson Mello",
   "license": "MIT",
+  "keywords": [
+    "express",
+    "express-internationalization",
+    "i18n",
+    "translation",
+    "translate",
+    "internationalization-middleware"
+  ],
   "scripts": {
     "build": "tsc"
   },
