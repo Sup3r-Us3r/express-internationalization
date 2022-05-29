@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/Sup3r-Us3r/express-internationalization",
-  "author": "Mayderson Mello",
+  "author": "Mayderson Mello <maydersonmello@gmail.com>",
   "license": "MIT",
   "keywords": [
     "express",
@@ -16,10 +16,40 @@
     "internationalization-middleware"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
+  },
+  "jest": {
+    "bail": true,
+    "clearMocks": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/src/*.ts"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageProvider": "v8",
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
+    "preset": "ts-jest",
+    "transform": {
+      ".(ts)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
-    "typescript": "^4.6.3"
+    "@types/jest": "^27.5.1",
+    "jest": "^28.1.0",
+    "ts-jest": "^28.0.2",
+    "typescript": "^4.6.4"
   }
 }
