@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 
 interface IInternationalizationMiddlewareOptions {
   languagesFolderPath: string;
-  defaultLocale?: string;
+  defaultLocaleToTranslate?: string;
 }
 
 let LANGUAGES_FOLDER_PATH = '';
@@ -29,17 +29,16 @@ function translateByLocale(keyOfMessage: string) {
 }
 
 export function internationalizationMiddleware(
-  { languagesFolderPath, defaultLocale = 'en' }: IInternationalizationMiddlewareOptions
+  { languagesFolderPath, defaultLocaleToTranslate = 'en' }: IInternationalizationMiddlewareOptions
 ) {
-  return (request: Request, response: Response, next: NextFunction) => {
+  return (request: Request, _response: Response, next: NextFunction) => {
     const currentLocale = request.headers['accept-language']?.replace(/(-.*)/g, '');
 
     LANGUAGES_FOLDER_PATH = languagesFolderPath;
     CURRENT_LOCALE = currentLocale?.length === 2
       ? currentLocale.toLowerCase()
-      : defaultLocale.toLowerCase();
+      : defaultLocaleToTranslate.toLowerCase();
 
-    // @ts-ignore
     request.translateByLocale = translateByLocale;
 
     next();
