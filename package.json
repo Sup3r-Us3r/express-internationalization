@@ -15,9 +15,6 @@
     "translate",
     "internationalization-middleware"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/Sup3r-Us3r"
-  },
   "scripts": {
     "build": "tsc",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"
