@@ -40,6 +40,8 @@ jobs:
           NEW_KEYWORD='"express-internationalization",'
           ESCAPED_NEW_KEYWORD=$(printf '%s\n' "$NEW_KEYWORD" | sed -e 's/[]\/$*.^[]/\\&/g')
           sed -i "s/$ESCAPED_OLD_KEYWORD/$ESCAPED_NEW_KEYWORD/g" package.json
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm config list
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
