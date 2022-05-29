@@ -1,5 +1,5 @@
 {
-  "name": "express-internationalization",
+  "name": "@Sup3r-Us3r/express-internationalization",
   "version": "1.1.0",
   "description": "A lib to perform internationalization the simple way with Express",
   "main": "dist/index.js",
@@ -15,6 +15,9 @@
     "translate",
     "internationalization-middleware"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/Sup3r-Us3r"
+  },
   "scripts": {
     "build": "tsc",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles"

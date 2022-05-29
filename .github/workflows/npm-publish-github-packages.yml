@@ -1,9 +1,6 @@
-name: Express Internationalization | GitHub Packages
+name: Deploy to GitHub Packages
 
 on:
-  push:
-    branches: [ github-package ]
-
   workflow_dispatch:
 
 jobs:
@@ -26,7 +23,7 @@ jobs:
       - name: Build package
         run: npm run build
 
-  publish-gpr:
+  publish-to-github-packages:
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -37,7 +34,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/Sup3r-Us3r
-      - run: npm publish
+          registry-url: https://npm.pkg.github.com/
+          scope: '@Sup3r-Us3r'
+
+      - name: Publish to GitHub Package Registry
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.TOKEN_GITHUB_PACKAGES}}
