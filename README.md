@@ -21,16 +21,18 @@ import { resolve } from 'path';
 
 const app = express();
 
-app.use(internationalizationMiddleware({
-  languagesFolderPath: resolve(__dirname, 'languages'),
-  defaultLocale: 'pt'
-}));
+app.use(
+  internationalizationMiddleware({
+    languagesFolderPath: resolve(__dirname, 'languages'),
+    defaultLocaleToTranslate: 'pt',
+  })
+);
 ```
 
 In `internationalizationMiddleware` there are only 2 parameters:
 
-* **languagesFolderPath**: Absolute path to `languages` folder.
-* **defaultLocale**: It is optional the default is `en` it is used when `Accept-Language` is not passed in Headers.
+- **languagesFolderPath**: Absolute path to `languages` folder.
+- **defaultLocaleToTranslate**: It is optional the default is `en` it is used when `Accept-Language` is not passed in Headers.
 
 It is necessary to create a `languages` folder for example and inside it create a new folder with the desired locale and a file called `translation.json` which will contain all the translations for that desired language.
 
@@ -58,7 +60,7 @@ The key you will use in the `translateByLocale` function that was added in the E
 ```typescript
 app.get('/', (request, response) => {
   return response.json({
-    message: request.translateByLocale('welcomeMessage')
+    message: request.translateByLocale('welcomeMessage'),
   });
 });
 ```
