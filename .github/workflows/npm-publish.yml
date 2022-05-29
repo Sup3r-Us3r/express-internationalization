@@ -34,6 +34,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Publish to NPM
-        run: npm publish --access public
+        run: |
+          OLD_KEYWORD=`cat package.json | grep 'name' | awk '{print $2}'`
+          ESCAPED_OLD_KEYWORD=$(printf '%s\n' "$OLD_KEYWORD" | sed -e 's/[]\/$*.^[]/\\&/g')
+          NEW_KEYWORD='"express-internationalization",'
+          ESCAPED_NEW_KEYWORD=$(printf '%s\n' "$NEW_KEYWORD" | sed -e 's/[]\/$*.^[]/\\&/g')
+          sed -i "s/$ESCAPED_OLD_KEYWORD/$ESCAPED_NEW_KEYWORD/g" package.json
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
