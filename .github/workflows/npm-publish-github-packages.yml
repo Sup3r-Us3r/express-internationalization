@@ -1,4 +1,4 @@
-name: Express Internationalization | GitHub Packages
+name: Deploy to GitHub Packages
 
 on:
   workflow_dispatch:
